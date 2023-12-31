@@ -1,0 +1,26 @@
+{# ... #}
+{# this tag only applies to the forms defined in this template #}
+{# {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<h1>User Sign Up:</h1>
+{{ form(form) }}
+{% endblock %} #}
+
+
+{# templates/default/new.html.twig #}
+<html>
+
+<head></head>
+
+<body>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+
+    <button type="submit" class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+</body>
+
+</html>
