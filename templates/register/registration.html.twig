@@ -1,26 +1,21 @@
-{# ... #}
-{# this tag only applies to the forms defined in this template #}
-{# {% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-{% block body %}
-<h1>User Sign Up:</h1>
-{{ form(form) }}
-{% endblock %} #}
-
-
-{# templates/default/new.html.twig #}
-<html>
-
-<head></head>
-
-<body>
+{% extends 'base.html.twig' %}
+{% block content %}
+<section>
+    <div>
+        <h3 class="text-center pb-5">S'enregistrer</h3>
+    </div>
     {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    <div class="py-3 text-center">{{ form_label(form.name)}}</div>
+    {{ form_widget(form.name) }}
+    <div class="py-3 text-center">{{ form_label(form.email)}}</div>
+    {{ form_widget(form.email) }}
+    <div class="py-3 text-center">{{ form_label(form.password)}}</div>
+    {{ form_widget(form.password) }}
+    <div class="py-3 text-center"><input class="btn btn-primary" type="submit" value="Créer"></div>
 
-    <button type="submit" class="btn btn-primary">Créer</button>
     {{ form_end(form) }}
-</body>
-
-</html>
+</section>
+{% endblock %}

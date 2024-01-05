@@ -4,19 +4,23 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
+    private $entityManager;
 
-    // private $datetime;
+    /**
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
-    // function __construct()
-    // {
-    //     $this->datetime = (new \DateTime('now'))->format('Y/m/d H:i:s');
-    // }
     public function new(Request $request): Response
     {
         $user = new User();
@@ -26,6 +30,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('register/registration.html.twig', [
