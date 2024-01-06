@@ -15,3 +15,7 @@ registration:
 app_login:
  path: /login
  controller: App\Controller\LoginController::login
+
+_logout_main:
+ path: /logout
+ controller: App\Controller\LoginController::logout
