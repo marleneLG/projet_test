@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +23,7 @@ class UserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    public function new(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function new(Request $request, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
 
@@ -30,6 +31,18 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $email = $repository->findByMail($user->getEmail());
+
+            if ($email !== null) {
+                $this->addFlash(
+                    'notice',
+                    'Vous êtes déjà inscrit'
+                );
+                return $this->render('register/registration.html.twig', [
+                    'form' => $form,
+                ]);
+            }
+
             $user = $form->getData();
             $plaintextPassword = $form->getData()->getPassword();
             $hashedPassword = $passwordHasher->hashPassword(
@@ -39,6 +52,12 @@ class UserController extends AbstractController
             $user->setPassword($hashedPassword);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
+
+            $this->addFlash(
+                'notice',
+                'Inscription réussi !'
+            );
+
             return $this->redirectToRoute('home');
         }
 

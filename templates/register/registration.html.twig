@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block content %}
 <section>
+    {% for notice in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ notice }}
+    </div>
+    {% endfor %}
+
     <div>
         <h3 class="text-center pb-5">S'enregistrer</h3>
     </div>

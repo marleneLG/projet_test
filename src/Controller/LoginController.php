@@ -13,10 +13,8 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $user = $this->getUser();
         // 1. REDIRECT USER IF USER IS CONNECTED
         if ($this->getUser()) {
-            dump($user);
             return $this->redirectToRoute('home');
         }
         //2. get the login error if there is one
@@ -30,7 +28,6 @@ class LoginController extends AbstractController
     #[Route('/logout', name: '_logout_main')]
     public function logout(Security $security): Response
     {
-        dump('coucou');
         // logout the user in on the current firewall
         $response = $security->logout();
 

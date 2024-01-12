@@ -53,12 +53,12 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Accueil</a></li>
+                    <li><a class="nav-link scrollto active" href="{{path('home')}}">Accueil</a></li>
                     <li><a class="nav-link scrollto" href="#portfolio">Figures</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('registration')}}">Inscription</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('app_login')}}">Connection</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li><a class="nav-link scrollto" href="{{ path('_logout_main')}}">Déconnection</a></li>
+                    <li><a class="nav-link scrollto" href="{{ path('_logout_main')}}">Déconnection</a></li>
                     {% endif %}
 
                 </ul>

@@ -13,9 +13,9 @@ registration:
   controller: App\Controller\UserController::new
 
 app_login:
- path: /login
- controller: App\Controller\LoginController::login
+  path: /login
+  controller: App\Controller\LoginController::login
 
 _logout_main:
- path: /logout
- controller: App\Controller\LoginController::logout
+  path: /logout
+  controller: App\Controller\LoginController::logout
