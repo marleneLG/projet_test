@@ -19,3 +19,11 @@ app_login:
 _logout_main:
   path: /logout
   controller: App\Controller\LoginController::logout
+
+app_register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+reset-password:
+  path: /reset-password
+  controller: src\Controller\ResetPasswordController.php

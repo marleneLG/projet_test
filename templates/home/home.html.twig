@@ -5,8 +5,8 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container" data-aos="fade-up">
-        <h1>Bienvenue sur ce site de snowboard</h1>
-        <h2>Ce site vous permet d'apprendre et de partager des figures de snowboard</h2>
+        <h1>Welcome to this snowboard website</h1>
+        <h2>This site allows you to learn and share snowboard figures</h2>
     </div>
 </section><!-- End Hero -->
 
@@ -19,9 +19,11 @@
                 {{ notice }}
             </div>
             {% endfor %}
-
+            {% for flash in app.flashes('success') %}
+            <div class="alert alert-success">{{ flash }}</div>
+            {% endfor %}
             <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-                <h2>Liste des figures</h2>
+                <h2>List of figures</h2>
             </div>
 
             <div class="row portfolio-container" data-aos="fade-up">
@@ -29,7 +31,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap card-trick">
                         <img src="/assets/img/portfolio/snow1.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
@@ -37,7 +39,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap card-trick">
                         <img src="assets/img/portfolio/snow2.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
@@ -45,7 +47,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap card-trick">
                         <img src="assets/img/portfolio/snow3.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                     <div class="portfolio-wrap card-trick">
                         <img src="assets/img/portfolio/snow4.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
@@ -61,7 +63,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap card-trick">
                         <img src="assets/img/portfolio/snow5.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                     <div class="portfolio-wrap card-trick">
                         <img src="assets/img/portfolio/snow9.jpg" class="img-fluid" alt="">
-                        <a href="#" class="btn btn-outline-info btn-sm">En savoir plus
+                        <a href="#" class="btn btn-outline-info btn-sm">Learn More
                         </a>
                     </div>
                 </div>
