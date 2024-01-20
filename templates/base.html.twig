@@ -54,7 +54,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="{{path('home')}}">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#portfolio">Tricks</a></li>
+                    <li><a class="nav-link scrollto" href="{{path('app_trick_new')}}">Tricks</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('app_register')}}">Register</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('app_login')}}">Login</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
