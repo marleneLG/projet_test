@@ -54,7 +54,8 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="{{path('home')}}">Home</a></li>
-                    <li><a class="nav-link scrollto" href="{{path('app_trick_new')}}">Tricks</a></li>
+                    <li><a class="nav-link scrollto" href="{{path('app_trick_index')}}">Tricks</a></li>
+                    <li><a class="nav-link scrollto" href="{{path('app_category_new')}}">Catgories</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('app_register')}}">Register</a></li>
                     <li><a class="nav-link scrollto" href="{{ path('app_login')}}">Login</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -67,10 +68,11 @@
 
         </div>
     </header><!-- End Header -->
-    {% block content %}
 
-    {% endblock content %}
-    </main><!-- End #main -->
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -81,8 +83,8 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    {# <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a> #}
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

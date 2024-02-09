@@ -1,38 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Trick{% endblock %}
+{% block title %}SnowTricks - {{ trick.name }}{% endblock %}
 
 {% block content %}
-    <h1>Trick</h1>
+<div class="position-relative border border-dark">
+    <div class="text-center">
+        <h1>{{ trick.name }}</h1>
+    </div>
+    {% if app.user %}
+    <div>
+        <a href="{{ path('app_trick_edit', {'id': trick.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+        <a href="{{ path('app_trick_delete', {'id': trick.id}) }}"
+            onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{trick.name}} ?`)"><i
+                class="fas fa-trash-alt"></i></a>
+    </div>
+    {% endif %}
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ trick.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ trick.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ trick.description }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ trick.createdAt ? trick.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ trick.updatedAt ? trick.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    {% for media in trick.medias %}
+    <div class=" mx-auto col-sm-6 col-md-4 col-lg-4 col-xl-3 border border-dark">
+        <img src="{{ asset('uploads/medias/')}}{{ media.url }}" alt="tricks">
+    </div>
+    {% endfor %}
+</div>
 
-    <a href="{{ path('app_trick_index') }}">back to list</a>
 
-    <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>
+<div class="row">
+    <div class="col-11 mx-auto mt-4 mb-1 bg-light">
+        <h3>Description :</h3>
+        {{ trick.description | raw }}
+    </div>
+</div>
 
-    {{ include('trick/_delete_form.html.twig') }}
+<div class="row">
+    <div class="row text-center col-11 mx-auto my-2 bg-light">
+        <p class="col">Publié le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }}
+        <p class="col">Mis à jour le {{ trick.updatedAt | date('d/m/Y') }} à {{ trick.updatedAt | date('H:i') }}</p>
+        <p class="col">Catégorie : {{ trick.category.name }}</p>
+    </div>
+</div>
+
 {% endblock %}

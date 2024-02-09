@@ -3,9 +3,123 @@
 {% block title %}Trick index{% endblock %}
 
 {% block content %}
+<div class="l-container register">
     <h1>Trick index</h1>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
 
-    <table class="table">
+    {# <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+                <h2>Portfolio</h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+                    fugiat
+                    sit in iste officiis commodi quidem hic quas.</p>
+            </div>
+
+            <div class="row portfolio-container" data-aos="fade-up">
+
+                {% for trick in tricks %}
+                {% for media in trick.medias %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div>
+                        {{ trick.name }}
+                    </div>
+                    <div class="portfolio-wrap">
+                        <img src="/uploads/medias/{{ media.url }}" class="img-fluid" alt="">
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
+                                class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div> {% endfor %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section --> #}
+    {% for trick in tricks %}
+
+    <div class="tricks-header">
+
+        <div class="tricks-title w-100 h-100 d-flex justify-content-center">
+            <span class="align-self-center text-center h1 fw-bold text-light"
+                style="text-shadow: 1px 1px 2px white, 0 0 1em rgb(15, 146, 207), 0 0 0.2em black; font-size:3em">{{trick.name}}</span>
+        </div>
+    </div>
+
+    <a data-bs-toggle="collapse" href="#collapsemedia" aria-expanded="false" aria-controls="collapsemedia"
+        style="color: red;" class="cross-close">
+        <i class="fas fa-times"></i>
+    </a>
+
+
+    {% if medias != null %}
+    <!-- START VIEW MEDIA -->
+    <div class="d-flex justify-content-around flex-wrap" id="files-sticks" style="margin-top:0px;">
+        <div class="justify-content-around flex-wrap" id="hide">
+            <div class="collapse d-md-block" id="collapsemedia">
+
+                <div class="d-flex justify-content-around flex-wrap">
+
+                    {% for media in trick.medias %}
+
+                    <span data-aos="flip-left" id="media-item">
+                        <img src="{{ asset('uploads/medias/')}}{{ media.url }}" alt="tricks">
+                    </span>
+                    <span>
+                        <video src="{{ asset('uploads/medias/')}}{{ media.url }}" controls preload="auto"></video>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap">
+        <a class="btn see-media-btn my-3" id="js-btn-see-media" data-bs-toggle="collapse"
+            href="{{ path('app_trick_show', {'id': media.url}) }}" role="button" aria-expanded="false"
+            aria-controls="collapsemedia">See
+            media</a>
+    </div>
+    {% endfor %}
+
+    <!-- END VIEW MEDIA -->
+    {% endif %}
+    <hr style="background-color: grey;">
+
+    <!-- START ARTICLE CONTENT -->
+    <article class='trick-article-content'>
+        <h2>How to do the trick ?</h2>
+        <p>{{ trick.description }}
+        </p>
+        <a href="{{ path('app_trick_edit', {'id': trick.id}) }}" style="background-color: rebeccapurple;">edit</a>
+        {% for category in trick.category %}
+
+        <div class="d-flex article-info">
+            <span>Add on {{ trick.createdAt|date("d/m/Y") }}</span>
+            <span>Category : {{ category.name }}</span>
+            {# <span><a href="#comment">{{ numberofcomments }} Comments</a></span>
+            {% if trick.edited == 1 %}
+            <span><a onclick="openModalContributor()" style="cursor: pointer;">{{ numberofcontributors }}
+                    Contributors</a></span>
+            <span>Edited on {{ trick.editedAt|date("d/m/Y") }}</span>
+            {% endif %} #}
+        </div>
+        {% endfor %}
+
+    </article>
+    {% endfor %}
+
+    <!-- END ARTICLE CONTENT -->
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,29 +127,35 @@
                 <th>Description</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for trick in tricks %}
+            {% for trick in tricks %}
+            {% for media in trick.medias %}
             <tr>
                 <td>{{ trick.id }}</td>
                 <td>{{ trick.name }}</td>
                 <td>{{ trick.description }}</td>
                 <td>{{ trick.createdAt ? trick.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ trick.updatedAt ? trick.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ media.url }}</td>
                 <td>
                     <a href="{{ path('app_trick_show', {'id': trick.id}) }}">show</a>
                     <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            {% endfor %}
 
-    <a href="{{ path('app_trick_new') }}">Create new</a>
+        </tbody>
+    </table> #}
+    <a style="background-color: blueviolet;" href="{{ path('app_trick_new') }}">Create new</a>
+</div>
+
+
 {% endblock %}

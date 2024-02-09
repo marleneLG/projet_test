@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Trick{% endblock %}
-
 {% block content %}
-    <h1>Create new Trick</h1>
-
+<section class="py-5 mx-auto l-container register">
+    <div>
+        <h3 class="text-center pb-5">Create New Trick</h3>
+    </div>
+    {% for message in app.flashes('notice') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
     {{ include('trick/_form.html.twig') }}
 
     <a href="{{ path('app_trick_index') }}">back to list</a>
+</section>
 {% endblock %}
